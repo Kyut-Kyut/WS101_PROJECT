@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sira-an Hot Spring | Anini-y, Antique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;600&display=swap" />
+    <style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+        .nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px}
+        .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+        .nav-logo img{height:48px;width:auto;display:block}
+        .nav-links{display:flex;gap:0;list-style:none;height:100%}
+        .nav-links li{height:64px;display:flex;align-items:center}
+        .nav-links a{font-family:'DM Sans',sans-serif;font-size:.8rem;color:rgba(250,248,243,.55);text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-weight:500;padding:0 1.2rem;height:100%;display:flex;align-items:center;position:relative;transition:color .3s ease}
+        .nav-links a::after{content:'';position:absolute;bottom:0;left:1.2rem;right:1.2rem;height:2px;background:#e8b86d;transform:scaleX(0);transition:transform .35s ease}
+        .nav-links a:hover{color:#faf8f3}
+        .nav-links a:hover::after{transform:scaleX(1)}
+        .nav-links a.active{color:#e8b86d}
+        .nav-links a.active::after{transform:scaleX(1)}
+        .nav-cta{font-family:'DM Sans',sans-serif;font-size:.75rem;padding:.55rem 1.5rem;border:1px solid #c7923e;color:#e8b86d;background:transparent;text-transform:uppercase;letter-spacing:.14em;text-decoration:none;flex-shrink:0;transition:all .3s ease}
+        .nav-cta:hover{background:#c7923e;color:#0d1b2a}
+        .nav-cta.active{background:#c7923e;color:#0d1b2a}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .hamburger span{display:block;width:22px;height:2px;background:#faf8f3;transition:all .3s ease}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.open span:nth-child(2){opacity:0}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-overlay{position:fixed;inset:0;z-index:150;background:rgba(13,27,42,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;visibility:hidden;transition:all .4s ease}
+        .mobile-overlay.active{opacity:1;visibility:visible}
+        .mobile-overlay a{font-family:'Playfair Display',serif;font-size:1.6rem;color:#faf8f3;text-decoration:none;opacity:0;transform:translateY(20px);transition:all .4s ease}
+        .mobile-overlay.active a{opacity:1;transform:translateY(0)}
+        .mobile-overlay a:nth-child(1){transition-delay:.05s}
+        .mobile-overlay a:nth-child(2){transition-delay:.1s}
+        .mobile-overlay a:nth-child(3){transition-delay:.15s}
+        .mobile-overlay a:nth-child(4){transition-delay:.2s}
+        .mobile-overlay a:nth-child(5){transition-delay:.25s}
+        .mobile-overlay a:nth-child(6){transition-delay:.3s}
+        .mobile-overlay a:nth-child(7){transition-delay:.35s}
+        .mobile-overlay a.active{color:#e8b86d}
+        @media(max-width:768px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-inner{padding:0 1.2rem}}
+        .site-footer{background:#07111a;border-top:1px solid rgba(255,255,255,0.07);padding-top:60px}
+        .site-footer__inner{max-width:1200px;margin:0 auto;padding:0 2.5rem 52px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:52px}
+        .site-footer__logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:14px;color:#fff}
+        .site-footer__logo span{color:#e8b86d}
+        .site-footer__desc{color:rgba(255,255,255,0.5);font-size:.84rem;line-height:1.8}
+        .site-footer__heading{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#e8b86d;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-weight:600}
+        .site-footer__links{list-style:none;display:flex;flex-direction:column;gap:11px}
+        .site-footer__links li,.site-footer__links a{color:rgba(255,255,255,0.5);font-size:.85rem;text-decoration:none;transition:color .2s}
+        .site-footer__links a:hover{color:#fff}
+        .site-footer__bottom{max-width:1200px;margin:0 auto;padding:20px 2.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.28)}
+        @media(max-width:768px){.site-footer__inner{grid-template-columns:1fr;gap:32px;padding:0 1.5rem 40px}.site-footer__bottom{flex-direction:column;gap:8px;text-align:center;padding:16px 1.5rem}}
+    </style>
+  </head>
+  <body class="bg-[#0d1b2a] text-white">
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><img src="images/Siraan_Logo.webp" alt="Sira-an Hot Spring"></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="html/about.html">About</a></li>
+                <li><a href="html/experience.html">Experience</a></li>
+                <li><a href="html/gallery.html">Gallery</a></li>
+                <li><a href="html/stay.html">Stay</a></li>
+                <li><a href="html/visit.html">Visit</a></li>
+            </ul>
+            <a href="html/booknow.html" class="nav-cta">Book Now</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <a href="index.html" class="active">Home</a>
+        <a href="html/about.html">About</a>
+        <a href="html/experience.html">Experience</a>
+        <a href="html/gallery.html">Gallery</a>
+        <a href="html/stay.html">Stay</a>
+        <a href="html/visit.html">Visit</a>
+        <a href="html/booknow.html">Book Now</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="home-hero">
+      <div
+        class="home-hero-bg"
+        style="background-image: url('images/bayview.webp');"
+      ></div>
+      <div class="home-hero-overlay"></div>
+      <div class="home-hero-content">
+        <p class="home-tag">Anini-y, Antique &bull; Philippines</p>
+        <h1 class="home-title">Where the Earth <em>Breathes</em> Warmth</h1>
+        <p class="home-sub">
+          Discover a natural coastal hot spring nestled between volcanic rocks
+          and the turquoise sea of Antique.
+        </p>
+        <div class="home-actions">
+          <a href="html/gallery.html" class="btn-primary"><span>Explore Gallery</span></a>
+          <a href="html/visit.html" class="btn-outline">Plan Your Visit</a>
+        </div>
+      </div>
+      <div class="home-scroll">
+        <span></span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-24 bg-[#0d262b]">
+      <div class="container mx-auto px-6">
+        <p class="text-center text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2">Discover</p>
+        <h2 class="text-center font-serif text-3xl italic text-white mb-12">What Awaits You</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+          <div class="feature-card card-gradient p-8 text-center rounded-sm cursor-pointer group"
+               data-card="hotspring">
+            <div class="text-4xl mb-5 transition-transform duration-300 group-hover:scale-110">♨️</div>
+            <h3 class="brand-font text-xl mb-3 text-white">Hot Springs</h3>
+            <p class="text-sm text-white/60 leading-relaxed">Geothermally heated mineral pools right on the coast.</p>
+            <div class="mt-6 flex items-center justify-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span>Explore</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+
+          <div class="feature-card card-gradient p-8 text-center rounded-sm cursor-pointer group"
+               data-card="oceanview">
+            <div class="text-4xl mb-5 transition-transform duration-300 group-hover:scale-110">🌊</div>
+            <h3 class="brand-font text-xl mb-3 text-white">Ocean Views</h3>
+            <p class="text-sm text-white/60 leading-relaxed">Soak while gazing at the vast Sea horizon.</p>
+            <div class="mt-6 flex items-center justify-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span>Explore</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+
+          <div class="feature-card card-gradient p-8 text-center rounded-sm cursor-pointer group"
+               data-card="sunset">
+            <div class="text-4xl mb-5 transition-transform duration-300 group-hover:scale-110">🌅</div>
+            <h3 class="brand-font text-xl mb-3 text-white">Sunsets</h3>
+            <p class="text-sm text-white/60 leading-relaxed">West-facing pools turn golden every evening.</p>
+            <div class="mt-6 flex items-center justify-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span>Explore</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+
+          <div class="feature-card card-gradient p-8 text-center rounded-sm cursor-pointer group"
+               data-card="accommodation">
+            <div class="text-4xl mb-5 transition-transform duration-300 group-hover:scale-110">🏨</div>
+            <h3 class="brand-font text-xl mb-3 text-white">Accommodation</h3>
+            <p class="text-sm text-white/60 leading-relaxed">Air-conditioned rooms for overnight stays.</p>
+            <div class="mt-6 flex items-center justify-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span>Explore</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE MODAL -->
+    <div id="featureModal" class="fixed inset-0 z-[200] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-400">
+      <div id="modalBackdrop" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+      <div id="modalBox" class="relative z-10 w-full max-w-5xl bg-[#0d1b2a] border border-white/10 rounded-lg overflow-hidden shadow-2xl flex flex-col md:flex-row translate-y-8 transition-transform duration-400" style="max-height:90vh">
+
+        <!-- Image Panel -->
+        <div class="md:w-[55%] relative overflow-hidden flex-shrink-0" style="min-height:260px">
+          <img id="modalImg" src="" alt="" class="w-full h-full object-cover absolute inset-0">
+          <!-- Image thumbnails -->
+          <div id="modalThumbs" class="absolute bottom-0 left-0 right-0 flex gap-2 p-3 bg-gradient-to-t from-black/70 to-transparent overflow-x-auto"></div>
+        </div>
+
+        <!-- Content Panel -->
+        <div class="md:w-[45%] flex flex-col overflow-y-auto">
+          <!-- Close -->
+          <button id="modalClose" class="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center border border-white/20 rounded-full text-white/60 hover:text-white hover:border-white/50 transition-all bg-black/40 backdrop-blur-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+
+          <div class="p-8 md:p-10 flex flex-col gap-6 h-full">
+            <div>
+              <p id="modalTag" class="text-[10px] uppercase tracking-[0.4em] text-[#e8b86d] mb-2"></p>
+              <h2 id="modalTitle" class="font-serif text-3xl italic text-white leading-snug"></h2>
+            </div>
+            <p id="modalDesc" class="text-white/65 text-sm leading-relaxed"></p>
+            <ul id="modalHighlights" class="space-y-3 mt-auto"></ul>
+            <a id="modalCta" href="#" class="inline-flex items-center gap-3 text-[#e8b86d] border border-[#e8b86d]/40 px-6 py-3 text-xs uppercase tracking-widest hover:bg-[#e8b86d] hover:text-[#0d1b2a] transition-all duration-300 self-start">
+              <span id="modalCtaText"></span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .feature-card {
+        border: 1px solid rgba(255,255,255,0.07);
+        transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+      }
+      .feature-card:hover {
+        border-color: rgba(232,184,109,0.35);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(232,184,109,0.1);
+      }
+      #featureModal.open { opacity:1; visibility:visible; }
+      #featureModal.open #modalBox { transform: translateY(0); }
+      #modalThumbs::-webkit-scrollbar { height:4px; }
+      #modalThumbs::-webkit-scrollbar-track { background:transparent; }
+      #modalThumbs::-webkit-scrollbar-thumb { background:rgba(232,184,109,0.5); border-radius:2px; }
+      .thumb-btn { flex-shrink:0; width:52px; height:40px; border-radius:3px; overflow:hidden; border:2px solid transparent; cursor:pointer; transition:border-color .2s; opacity:.65; }
+      .thumb-btn.active, .thumb-btn:hover { border-color:#e8b86d; opacity:1; }
+      .highlight-item { display:flex; align-items:flex-start; gap:10px; }
+      .highlight-dot { width:6px; height:6px; border-radius:50%; background:#e8b86d; margin-top:5px; flex-shrink:0; }
+      .highlight-item span { color:rgba(255,255,255,0.7); font-size:.8rem; line-height:1.5; }
+    </style>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div>
+                <p class="site-footer__logo">Sira-an <span>Hot Spring</span></p>
+                <p class="site-footer__desc">A natural geothermal coastal retreat in Anini-y, Antique. Relax in warm mineral waters while listening to the rhythm of the Sea.</p>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Navigate</h4>
+                <ul class="site-footer__links">
+                    <li><a href="html/about.html">About</a></li>
+                    <li><a href="html/experience.html">Experience</a></li>
+                    <li><a href="html/gallery.html">Gallery</a></li>
+                    <li><a href="html/stay.html">Stay</a></li>
+                    <li><a href="html/visit.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Nearby</h4>
+                <ul class="site-footer__links">
+                    <li>Nogas Island</li>
+                    <li>Punta Nasog</li>
+                    <li>Mt. Aliw-Liw</li>
+                    <li>Baroque Church</li>
+                    <li>Le Grande Bayo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <p>© 2026 Sira-an Hot Spring, Anini-y, Antique. All rights reserved.</p>
+            <p>Designed by Mary Artheal S. Seduco — BSIT 3B</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Hamburger ---
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', !isOpen);
+            hamburgerBtn.classList.toggle('open', !isOpen);
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('open');
+            });
+        });
+
+        // --- Feature Modal Data ---
+        const cardData = {
+            hotspring: {
+                tag: 'Natural Geothermal',
+                title: 'Healing Hot Springs',
+                desc: 'Sira-an\'s mineral-rich pools are heated directly by the Earth\'s volcanic activity, reaching temperatures up to 40°C. Built along the rocky coastline, each pool offers a unique therapeutic experience — from warm soaking baths to refreshing plunge pools.',
+                highlights: [
+                    'Multiple pools at varying temperatures (35°C – 40°C)',
+                    'Mineral-rich water with natural healing properties',
+                    'Pools built directly on the volcanic coastal rocks',
+                    'Large oceanfront pool with water slide'
+                ],
+                images: ['images/hotspringpool.webp','images/hotSpring.webp','images/pool.webp','images/pool2.webp','images/pool3.webp'],
+                cta: 'See the Experience',
+                ctaHref: 'html/experience.html'
+            },
+            oceanview: {
+                tag: 'Coastal Paradise',
+                title: 'Unbroken Ocean Views',
+                desc: 'Perched at the edge of Antique\'s rugged coastline, Sira-an offers sweeping views of the Sea. Soak in warm mineral pools while the horizon stretches endlessly before you — a scene found nowhere else in the Visayas.',
+                highlights: [
+                    'Panoramic view of the Sea from every pool',
+                    'Rocky coastline scenery unique to Anini-y',
+                    'Coastal breezes that complement the warm water',
+                    'Perfect vantage point for whale watching season'
+                ],
+                images: ['images/bayview.webp','images/beautyview.webp','images/backview.webp','images/frontview.webp','images/view.webp'],
+                cta: 'Plan Your Visit',
+                ctaHref: 'html/visit.html'
+            },
+            sunset: {
+                tag: 'Golden Hour',
+                title: 'Breathtaking Sunsets',
+                desc: 'Sira-an faces west — directly into the path of the setting sun. Every evening, the sky ignites in deep golds, fiery oranges, and violet hues, painting the water and the rocky shore in colors that feel almost unreal.',
+                highlights: [
+                    'West-facing pools perfectly aligned with the sunset',
+                    'Sky transforms into vivid color every evening',
+                    'Reflections on the water create a mirror-like effect',
+                    'Best viewed from the upper terrace pool area'
+                ],
+                images: ['images/sunsetview1.webp','images/sunset.webp','images/sunset2.webp','images/sunset3.webp','images/sunsetvibe.webp'],
+                cta: 'View the Gallery',
+                ctaHref: 'html/gallery.html'
+            },
+            accommodation: {
+                tag: 'Overnight Stays',
+                title: 'Comfortable Rooms',
+                desc: 'Stay the night and wake up to the sound of waves. Sira-an\'s air-conditioned rooms are clean, comfortable, and designed for rest — giving you full access to the hot spring pools from evening to morning.',
+                highlights: [
+                    'Standard Twin, Deluxe Double, and Family Triple rooms',
+                    'All rooms include free hot spring pool access',
+                    'Air-conditioning and fresh linens in every room',
+                    'Steps away from the oceanfront pools'
+                ],
+                images: ['images/standardtwinroom.webp','images/deluxedoubleroom.webp','images/familytripleroom.webp'],
+                cta: 'View Accommodations',
+                ctaHref: 'html/stay.html'
+            }
+        };
+
+        // --- Modal Elements ---
+        const modal      = document.getElementById('featureModal');
+        const modalBox   = document.getElementById('modalBox');
+        const modalImg   = document.getElementById('modalImg');
+        const modalThumbs= document.getElementById('modalThumbs');
+        const modalTag   = document.getElementById('modalTag');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc  = document.getElementById('modalDesc');
+        const modalHL    = document.getElementById('modalHighlights');
+        const modalCta   = document.getElementById('modalCta');
+        const modalCtaTx = document.getElementById('modalCtaText');
+        const modalClose = document.getElementById('modalClose');
+        const backdrop   = document.getElementById('modalBackdrop');
+
+        function openModal(key) {
+            const d = cardData[key];
+            if (!d) return;
+
+            modalTag.textContent   = d.tag;
+            modalTitle.textContent = d.title;
+            modalDesc.textContent  = d.desc;
+            modalCtaTx.textContent = d.cta;
+            modalCta.href          = d.ctaHref;
+
+            // highlights
+            modalHL.innerHTML = d.highlights.map(h =>
+                `<li class="highlight-item"><span class="highlight-dot"></span><span>${h}</span></li>`
+            ).join('');
+
+            // main image
+            modalImg.src = d.images[0];
+            modalImg.alt = d.title;
+
+            // thumbnails
+            modalThumbs.innerHTML = d.images.map((src, i) =>
+                `<button class="thumb-btn ${i===0?'active':''}" data-src="${src}">
+                    <img src="${src}" alt="" class="w-full h-full object-cover">
+                </button>`
+            ).join('');
+
+            modalThumbs.querySelectorAll('.thumb-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modalImg.style.opacity = '0';
+                    modalImg.style.transform = 'scale(1.03)';
+                    setTimeout(() => {
+                        modalImg.src = btn.dataset.src;
+                        modalImg.style.opacity = '1';
+                        modalImg.style.transform = 'scale(1)';
+                    }, 180);
+                    modalThumbs.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            modalImg.style.transition = 'opacity .18s ease, transform .18s ease';
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', () => openModal(card.dataset.card));
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+  </body>
+</html>

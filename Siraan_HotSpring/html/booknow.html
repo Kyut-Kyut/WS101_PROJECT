@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now | Sira-an Hot Spring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a1e23;
+            color: white;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .input-field:focus {
+            border-color: #b89146;
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-field option {
+            color: #000;
+            background: #fff;
+        }
+
+        input[type="date"].input-field {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        select.input-field:invalid {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        select.input-field:valid {
+            color: white;
+        }
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+        .nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px}
+        .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+        .nav-logo img{height:48px;width:auto;display:block}
+        .nav-links{display:flex;gap:0;list-style:none;height:100%}
+        .nav-links li{height:64px;display:flex;align-items:center}
+        .nav-links a{font-family:'DM Sans',sans-serif;font-size:.8rem;color:rgba(250,248,243,.55);text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-weight:500;padding:0 1.2rem;height:100%;display:flex;align-items:center;position:relative;transition:color .3s ease}
+        .nav-links a::after{content:'';position:absolute;bottom:0;left:1.2rem;right:1.2rem;height:2px;background:#e8b86d;transform:scaleX(0);transition:transform .35s ease}
+        .nav-links a:hover{color:#faf8f3}
+        .nav-links a:hover::after{transform:scaleX(1)}
+        .nav-links a.active{color:#e8b86d}
+        .nav-links a.active::after{transform:scaleX(1)}
+        .nav-cta{font-family:'DM Sans',sans-serif;font-size:.75rem;padding:.55rem 1.5rem;border:1px solid #c7923e;color:#e8b86d;background:transparent;text-transform:uppercase;letter-spacing:.14em;text-decoration:none;flex-shrink:0;transition:all .3s ease}
+        .nav-cta:hover{background:#c7923e;color:#0d1b2a}
+        .nav-cta.active{background:#c7923e;color:#0d1b2a}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .hamburger span{display:block;width:22px;height:2px;background:#faf8f3;transition:all .3s ease}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.open span:nth-child(2){opacity:0}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-overlay{position:fixed;inset:0;z-index:150;background:rgba(13,27,42,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;visibility:hidden;transition:all .4s ease}
+        .mobile-overlay.active{opacity:1;visibility:visible}
+        .mobile-overlay a{font-family:'Playfair Display',serif;font-size:1.6rem;color:#faf8f3;text-decoration:none;opacity:0;transform:translateY(20px);transition:all .4s ease}
+        .mobile-overlay.active a{opacity:1;transform:translateY(0)}
+        .mobile-overlay a:nth-child(1){transition-delay:.05s}
+        .mobile-overlay a:nth-child(2){transition-delay:.1s}
+        .mobile-overlay a:nth-child(3){transition-delay:.15s}
+        .mobile-overlay a:nth-child(4){transition-delay:.2s}
+        .mobile-overlay a:nth-child(5){transition-delay:.25s}
+        .mobile-overlay a:nth-child(6){transition-delay:.3s}
+        .mobile-overlay a:nth-child(7){transition-delay:.35s}
+        .mobile-overlay a.active{color:#e8b86d}
+        @media(max-width:768px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-inner{padding:0 1.2rem}}
+        .site-footer{background:#07111a;border-top:1px solid rgba(255,255,255,0.07);padding-top:60px}
+        .site-footer__inner{max-width:1200px;margin:0 auto;padding:0 2.5rem 52px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:52px}
+        .site-footer__logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:14px;color:#fff}
+        .site-footer__logo span{color:#e8b86d}
+        .site-footer__desc{color:rgba(255,255,255,0.5);font-size:.84rem;line-height:1.8}
+        .site-footer__heading{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#e8b86d;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-weight:600}
+        .site-footer__links{list-style:none;display:flex;flex-direction:column;gap:11px}
+        .site-footer__links li,.site-footer__links a{color:rgba(255,255,255,0.5);font-size:.85rem;text-decoration:none;transition:color .2s}
+        .site-footer__links a:hover{color:#fff}
+        .site-footer__bottom{max-width:1200px;margin:0 auto;padding:20px 2.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.28)}
+        @media(max-width:768px){.site-footer__inner{grid-template-columns:1fr;gap:32px;padding:0 1.5rem 40px}.site-footer__bottom{flex-direction:column;gap:8px;text-align:center;padding:16px 1.5rem}}
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../images/Siraan_Logo.webp" alt="Sira-an Hot Spring"></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="stay.html">Stay</a></li>
+                <li><a href="visit.html">Visit</a></li>
+            </ul>
+            <a href="booknow.html" class="nav-cta active">Book Now</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="stay.html">Stay</a>
+        <a href="visit.html">Visit</a>
+        <a href="booknow.html" class="active">Book Now</a>
+    </div>
+
+    <header class="relative h-[50vh] flex items-center justify-center text-center overflow-hidden">
+        <img src="../images/pool3.webp" class="absolute inset-0 w-full h-full object-cover opacity-30"
+            alt="Booking Background">
+        <div class="relative z-10 px-4">
+            <p class="uppercase tracking-[0.6em] text-[10px] mb-4 text-white/50">Reservations</p>
+            <h1 class="text-5xl md:text-6xl font-serif italic">Secure Your <span class="text-teal-400">Paradise</span>
+            </h1>
+        </div>
+    </header>
+
+    <section class="py-24 bg-[#0a1e23]">
+        <div class="container mx-auto px-8 lg:px-20">
+            <div class="grid lg:grid-cols-3 gap-12">
+
+                <div class="lg:col-span-2 glass-card p-10 md:p-14 rounded-sm">
+                    <h2 class="text-2xl font-serif italic text-white mb-10">Inquiry <span
+                            class="text-[#b89146]">Form</span></h2>
+                    <form id="inquiryForm" class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" id="fullName" placeholder="Full Name" required
+                                class="input-field w-full px-6 py-4 text-sm rounded-sm">
+                            <input type="email" id="emailAddr" placeholder="Email Address" required
+                                class="input-field w-full px-6 py-4 text-sm rounded-sm">
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <input type="date" id="checkDate" required class="input-field w-full px-6 py-4 text-sm rounded-sm">
+                            <input type="number" id="guestCount" placeholder="Guests" min="1" required
+                                class="input-field w-full px-6 py-4 text-sm rounded-sm">
+                            <select id="roomType" required class="input-field w-full px-6 py-4 text-sm rounded-sm appearance-none">
+                                <option value="" disabled selected>Room Type</option>
+                                <option>Standard Twin</option>
+                                <option>Deluxe Double</option>
+                                <option>Family Triple</option>
+                            </select>
+                        </div>
+                        <textarea rows="5" placeholder="Special Requests"
+                            class="input-field w-full px-6 py-4 text-sm rounded-sm resize-none"></textarea>
+                        <button type="submit"
+                            class="bg-teal-500/80 hover:bg-teal-600 text-white font-semibold uppercase tracking-widest text-[11px] px-12 py-4 transition-all">
+                            Send Inquiry
+                        </button>
+                    </form>
+                </div>
+
+                <div class="space-y-10">
+
+                    <div class="space-y-4">
+                        <h3 class="text-[11px] uppercase tracking-[0.3em] text-teal-400 font-bold">Booking Information
+                        </h3>
+                        <p class="text-white/60 text-xs leading-relaxed font-light">
+                            Submitting this form does not confirm a reservation. Our team will contact you via email
+                            within 24 hours to verify availability and provide payment instructions.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-[11px] uppercase tracking-[0.3em] text-teal-400 font-bold">Contact Directly</h3>
+                        <div class="text-white/60 text-xs space-y-2 font-light">
+                            <p class="flex items-center gap-3">📞 <span>+63 912 345 6789</span></p>
+                            <p class="flex items-center gap-3">📧 <span>siraan@hotspring.com</span></p>
+                            <p class="flex items-center gap-3">📍 <span>Anini-y, Antique, Philippines</span></p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 p-6 bg-white/5 border border-white/10 rounded-sm">
+                        <h3 class="text-[11px] uppercase tracking-[0.3em] text-[#b89146] font-bold">Tips for Visitors
+                        </h3>
+                        <ul class="text-white/60 text-[11px] space-y-3 font-light list-disc list-inside">
+                            <li>Bring proper swimwear for the hot spring pools.</li>
+                            <li>Check-in is at 2:00 PM; Check-out is at 12:00 PM.</li>
+                            <li>Weekend visits are popular; book 1 week in advance.</li>
+                            <li>Don't forget your camera for the sunset views!</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div>
+                <p class="site-footer__logo">Sira-an <span>Hot Spring</span></p>
+                <p class="site-footer__desc">A natural geothermal coastal retreat in Anini-y, Antique. Relax in warm mineral waters while listening to the rhythm of the Sea.</p>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Navigate</h4>
+                <ul class="site-footer__links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="stay.html">Stay</a></li>
+                    <li><a href="visit.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Nearby</h4>
+                <ul class="site-footer__links">
+                    <li>Nogas Island</li>
+                    <li>Punta Nasog</li>
+                    <li>Mt. Aliw-Liw</li>
+                    <li>Baroque Church</li>
+                    <li>Le Grande Bayo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <p>© 2026 Sira-an Hot Spring, Anini-y, Antique. All rights reserved.</p>
+            <p>Designed by Mary Artheal S. Seduco — BSIT 3B</p>
+        </div>
+    </footer>
+
+    <!-- SUCCESS POPUP -->
+    <div id="successPopup" style="position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:all .3s ease;">
+        <div id="popupBackdrop" style="position:absolute;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(5px);"></div>
+        <div id="popupBox" style="position:relative;z-index:10;background:#0d1b2a;border:1px solid rgba(232,184,109,0.25);border-radius:10px;padding:1.75rem 2rem;max-width:360px;width:100%;text-align:center;transform:translateY(20px);transition:transform .3s ease;box-shadow:0 20px 60px rgba(0,0,0,0.55);">
+            <!-- Icon -->
+            <div style="width:52px;height:52px;border-radius:50%;background:rgba(94,234,212,0.1);border:2px solid rgba(94,234,212,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <!-- Text -->
+            <p style="font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:#e8b86d;margin-bottom:.5rem;font-family:'DM Sans',sans-serif;">Inquiry Received</p>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.3;">Thank You, <span id="popupName" style="color:#5eead4;font-style:italic;"></span>!</h3>
+            <p style="color:rgba(255,255,255,0.55);font-size:.78rem;line-height:1.65;margin-bottom:1.25rem;">
+                Your inquiry was submitted. We'll contact you within <strong style="color:#fff;">24 hours</strong> to confirm availability.
+            </p>
+            <!-- Divider -->
+            <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:1rem;"></div>
+            <!-- Summary -->
+            <div id="popupSummary" style="text-align:left;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:.75rem 1rem;font-size:.75rem;color:rgba(255,255,255,0.55);display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;"></div>
+            <!-- Close -->
+            <button id="popupClose" style="font-family:'DM Sans',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;padding:.6rem 2rem;border:1px solid #e8b86d;color:#e8b86d;background:transparent;border-radius:4px;cursor:pointer;transition:all .25s ease;">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Set date input to today's date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkDate').value = today;
+
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', !isOpen);
+            hamburgerBtn.classList.toggle('open', !isOpen);
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('open');
+            });
+        });
+
+        // --- Inquiry Form Popup ---
+        const popup      = document.getElementById('successPopup');
+        const popupBox   = document.getElementById('popupBox');
+        const popupClose = document.getElementById('popupClose');
+        const popupBack  = document.getElementById('popupBackdrop');
+        const popupName  = document.getElementById('popupName');
+        const popupSum   = document.getElementById('popupSummary');
+
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name     = document.getElementById('fullName').value.trim();
+            const email    = document.getElementById('emailAddr').value.trim();
+            const date     = document.getElementById('checkDate').value;
+            const guests   = document.getElementById('guestCount').value;
+            const room     = document.getElementById('roomType').value;
+
+            // Populate popup content
+            popupName.textContent = name.split(' ')[0];
+            popupSum.innerHTML = [
+                { icon: '👤', label: 'Name',       val: name },
+                { icon: '📧', label: 'Email',      val: email },
+                { icon: '📅', label: 'Check-in',   val: date ? new Date(date).toLocaleDateString('en-PH', {year:'numeric',month:'long',day:'numeric'}) : '—' },
+                { icon: '👥', label: 'Guests',     val: guests || '—' },
+                { icon: '🛏️', label: 'Room Type',  val: room || '—' }
+            ].map(r => `<div style="display:flex;gap:.6rem;align-items:center;"><span>${r.icon}</span><span style="color:rgba(255,255,255,0.35);min-width:72px;">${r.label}</span><span style="color:rgba(255,255,255,0.75);font-weight:500;">${r.val}</span></div>`).join('');
+
+            // Show popup
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+            popupBox.style.transform = 'translateY(0)';
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closePopup() {
+            popup.style.opacity = '0';
+            popup.style.visibility = 'hidden';
+            popupBox.style.transform = 'translateY(24px)';
+            document.body.style.overflow = '';
+            document.getElementById('inquiryForm').reset();
+        }
+
+        popupClose.addEventListener('click', closePopup);
+        popupBack.addEventListener('click', closePopup);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+        // Close button hover effect
+        popupClose.addEventListener('mouseenter', () => { popupClose.style.background='#e8b86d'; popupClose.style.color='#0d1b2a'; });
+        popupClose.addEventListener('mouseleave', () => { popupClose.style.background='transparent'; popupClose.style.color='#e8b86d'; });
+    </script>
+</body>
+
+</html>

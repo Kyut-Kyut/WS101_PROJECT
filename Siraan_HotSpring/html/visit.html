@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Us | Sira-an Hot Spring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a1e23;
+            color: white;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+        .nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px}
+        .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+        .nav-logo img{height:48px;width:auto;display:block}
+        .nav-links{display:flex;gap:0;list-style:none;height:100%}
+        .nav-links li{height:64px;display:flex;align-items:center}
+        .nav-links a{font-family:'DM Sans',sans-serif;font-size:.8rem;color:rgba(250,248,243,.55);text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-weight:500;padding:0 1.2rem;height:100%;display:flex;align-items:center;position:relative;transition:color .3s ease}
+        .nav-links a::after{content:'';position:absolute;bottom:0;left:1.2rem;right:1.2rem;height:2px;background:#e8b86d;transform:scaleX(0);transition:transform .35s ease}
+        .nav-links a:hover{color:#faf8f3}
+        .nav-links a:hover::after{transform:scaleX(1)}
+        .nav-links a.active{color:#e8b86d}
+        .nav-links a.active::after{transform:scaleX(1)}
+        .nav-cta{font-family:'DM Sans',sans-serif;font-size:.75rem;padding:.55rem 1.5rem;border:1px solid #c7923e;color:#e8b86d;background:transparent;text-transform:uppercase;letter-spacing:.14em;text-decoration:none;flex-shrink:0;transition:all .3s ease}
+        .nav-cta:hover{background:#c7923e;color:#0d1b2a}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .hamburger span{display:block;width:22px;height:2px;background:#faf8f3;transition:all .3s ease}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.open span:nth-child(2){opacity:0}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-overlay{position:fixed;inset:0;z-index:150;background:rgba(13,27,42,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;visibility:hidden;transition:all .4s ease}
+        .mobile-overlay.active{opacity:1;visibility:visible}
+        .mobile-overlay a{font-family:'Playfair Display',serif;font-size:1.6rem;color:#faf8f3;text-decoration:none;opacity:0;transform:translateY(20px);transition:all .4s ease}
+        .mobile-overlay.active a{opacity:1;transform:translateY(0)}
+        .mobile-overlay a:nth-child(1){transition-delay:.05s}
+        .mobile-overlay a:nth-child(2){transition-delay:.1s}
+        .mobile-overlay a:nth-child(3){transition-delay:.15s}
+        .mobile-overlay a:nth-child(4){transition-delay:.2s}
+        .mobile-overlay a:nth-child(5){transition-delay:.25s}
+        .mobile-overlay a:nth-child(6){transition-delay:.3s}
+        .mobile-overlay a:nth-child(7){transition-delay:.35s}
+        .mobile-overlay a.active{color:#e8b86d}
+        @media(max-width:768px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-inner{padding:0 1.2rem}}
+        .site-footer{background:#07111a;border-top:1px solid rgba(255,255,255,0.07);padding-top:60px}
+        .site-footer__inner{max-width:1200px;margin:0 auto;padding:0 2.5rem 52px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:52px}
+        .site-footer__logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:14px;color:#fff}
+        .site-footer__logo span{color:#e8b86d}
+        .site-footer__desc{color:rgba(255,255,255,0.5);font-size:.84rem;line-height:1.8}
+        .site-footer__heading{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#e8b86d;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-weight:600}
+        .site-footer__links{list-style:none;display:flex;flex-direction:column;gap:11px}
+        .site-footer__links li,.site-footer__links a{color:rgba(255,255,255,0.5);font-size:.85rem;text-decoration:none;transition:color .2s}
+        .site-footer__links a:hover{color:#fff}
+        .site-footer__bottom{max-width:1200px;margin:0 auto;padding:20px 2.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.28)}
+        @media(max-width:768px){.site-footer__inner{grid-template-columns:1fr;gap:32px;padding:0 1.5rem 40px}.site-footer__bottom{flex-direction:column;gap:8px;text-align:center;padding:16px 1.5rem}}
+
+        .detail-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(184, 145, 70, 0.35);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b89146;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .map-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(184, 145, 70, 0.2);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 24px 60px rgba(0,0,0,0.5);
+            background: #0d262b;
+        }
+
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            filter: saturate(0.7) brightness(0.88);
+        }
+
+        .map-label {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 10;
+            background: rgba(10, 30, 35, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(184,145,70,0.35);
+            border-radius: 4px;
+            padding: 9px 14px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.85);
+            letter-spacing: 0.06em;
+            pointer-events: none;
+            line-height: 1.4;
+        }
+        .map-label strong {
+            color: #b89146;
+            font-weight: 600;
+            display: block;
+            font-size: 12px;
+            margin-bottom: 1px;
+        }
+
+        .map-directions-btn {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background: #b89146;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 11px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.55);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .map-directions-btn:hover {
+            background: #cfa855;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* top & bottom fade edges over the iframe */
+        .map-frame::before,
+        .map-frame::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: 60px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .map-frame::before {
+            top: 0;
+            background: linear-gradient(to bottom, rgba(10,30,35,0.45), transparent);
+        }
+        .map-frame::after {
+            bottom: 0;
+            background: linear-gradient(to top, rgba(10,30,35,0.5), transparent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../images/Siraan_Logo.webp" alt="Sira-an Hot Spring"></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="stay.html">Stay</a></li>
+                <li><a href="visit.html" class="active">Visit</a></li>
+            </ul>
+            <a href="booknow.html" class="nav-cta">Book Now</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="stay.html">Stay</a>
+        <a href="visit.html" class="active">Visit</a>
+        <a href="booknow.html">Book Now</a>
+    </div>
+
+    <header class="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
+        <img src="../images/backview.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
+            alt="Sira-an Coast">
+        <div class="absolute inset-0 bg-black/40 z-0"></div>
+        <div class="relative z-10 px-4 max-w-3xl mx-auto">
+            <p class="uppercase tracking-[0.5em] text-[10px] mb-3 text-white/60">Getting Here</p>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Plan Your <em class="text-teal-400">Visit</em></h1>
+            <div class="h-[2px] w-16 bg-[#e8b86d] mx-auto mb-6 opacity-60"></div>
+            <p class="text-lg md:text-xl font-light tracking-wide" style="color:rgba(255,255,255,0.85);min-height:2em;">
+                <span id="typewriter"></span><span id="cursor" style="display:inline-block;width:2px;height:1.1em;background:#5eead4;vertical-align:middle;margin-left:2px;border-radius:1px;animation:blink .7s step-end infinite;"></span>
+            </p>
+        </div>
+    </header>
+
+    <style>@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }</style>
+
+    <script>
+        (function(){
+            const phrases = [
+                "Open daily, 6:00 AM – 10:00 PM — all year round.",
+                "Located in Brgy. Nato, Anini-y, Antique 5717, Philippines.",
+                "From Iloilo: ~3 hours by van, then a tricycle to Sira-an.",
+                "Nogas Island, Punta Nasog, and more — all nearby.",
+                "Affordable entrance fees for day visitors and overnight guests.",
+                "Your adventure in Antique starts right here.",
+                "A hidden coastal gem waiting to be discovered.",
+                "Plan your visit — paradise is closer than you think."
+            ];
+            const el = document.getElementById('typewriter');
+            let pi = 0, ci = 0, deleting = false, pauseTicks = 0;
+            const PAUSE = 38;
+            function tick() {
+                const phrase = phrases[pi];
+                if (!deleting) {
+                    el.textContent = phrase.slice(0, ci + 1);
+                    ci++;
+                    if (ci === phrase.length) { deleting = true; pauseTicks = PAUSE; setTimeout(tick, 80); return; }
+                    setTimeout(tick, 48);
+                } else {
+                    if (pauseTicks > 0) { pauseTicks--; setTimeout(tick, 40); return; }
+                    el.textContent = phrase.slice(0, ci - 1);
+                    ci--;
+                    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 300); return; }
+                    setTimeout(tick, 28);
+                }
+            }
+            setTimeout(tick, 800);
+        })();
+    </script>
+
+    <section class="pt-20 pb-10 bg-[#0a1e23]">
+        <div class="container mx-auto px-8 lg:px-20">
+            <div class="grid lg:grid-cols-2 gap-14 items-start">
+
+                <!-- Detail Items -->
+                <div class="space-y-7">
+                    <div class="flex gap-4 items-start">
+                        <div class="detail-icon">📍</div>
+                        <div>
+                            <h4 class="font-serif text-base font-semibold mb-1">Address</h4>
+                            <p class="text-sm text-white/55 leading-relaxed">Brgy. Nato, Anini-y, Antique 5717,
+                                Philippines</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="detail-icon">🚌</div>
+                        <div>
+                            <h4 class="font-serif text-base font-semibold mb-1">By Land</h4>
+                            <p class="text-sm text-white/55 leading-relaxed">From San Jose de Buenavista, take a van or
+                                bus to Anini-y town proper (~1.5 hrs), then hire a tricycle to Sira-an Hot Spring (~15
+                                mins).</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="detail-icon">✈️</div>
+                        <div>
+                            <h4 class="font-serif text-base font-semibold mb-1">Nearest Airport</h4>
+                            <p class="text-sm text-white/55 leading-relaxed">Iloilo International Airport. From Iloilo
+                                City, take a Ceres bus or van to San Jose de Buenavista (~3–4 hrs), then continue to
+                                Anini-y.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="detail-icon">⏱️</div>
+                        <div>
+                            <h4 class="font-serif text-base font-semibold mb-1">Operating Hours</h4>
+                            <p class="text-sm text-white/55 leading-relaxed">Open daily, 6:00 AM – 10:00 PM. Overnight
+                                guests may enjoy the springs until closing.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="detail-icon">💰</div>
+                        <div>
+                            <h4 class="font-serif text-base font-semibold mb-1">Entrance Fee</h4>
+                            <p class="text-sm text-white/55 leading-relaxed">Affordable entrance fees apply. Contact the
+                                resort directly for current rates and room reservations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="map-frame">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Sira-an+Hot+Spring,+Nato,+Anini-y,+Antique+5717,+Philippines&hl=en&z=16&output=embed"
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Sira-an Hot Spring Location">
+                    </iframe>
+                    <div class="map-label">
+                        <strong>Sira-an Hot Spring</strong>
+                        Brgy. Nato, Anini-y, Antique 5717
+                    </div>
+                    <a class="map-directions-btn"
+                        href="https://www.google.com/maps/search/Sira-an+Hot+Spring,+Nato,+Anini-y,+Antique+5717+Philippines"
+                        target="_blank" rel="noopener">
+                        ↗ Get Directions
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EXPLORE NEARBY -->
+    <section class="pt-0 pb-20 bg-[#0a1e23]">
+        <div class="container mx-auto px-8 lg:px-20">
+
+            <h2 class="font-serif text-3xl md:text-4xl text-white mb-10">Explore <em class="text-[#b89146]">Nearby</em></h2>
+
+            <div class="grid md:grid-cols-3 gap-5">
+
+                <div class="nearby-card p-7 rounded-lg cursor-pointer group" data-card="nogas">
+                    <p class="text-xl mb-3">🏝️ <span class="font-semibold text-white text-base">Nogas Island</span></p>
+                    <p class="text-white/55 text-sm leading-relaxed">A pristine uninhabited island with crystal-clear waters, perfect for snorkeling and day trips by boat.</p>
+                    <div class="mt-5 flex items-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+
+                <div class="nearby-card p-7 rounded-lg cursor-pointer group" data-card="nasog">
+                    <p class="text-xl mb-3">⛰️ <span class="font-semibold text-white text-base">Punta Nasog</span></p>
+                    <p class="text-white/55 text-sm leading-relaxed">A scenic rocky headland offering panoramic views of the coastline and the open sea.</p>
+                    <div class="mt-5 flex items-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+
+                <div class="nearby-card p-7 rounded-lg cursor-pointer group" data-card="baroque">
+                    <p class="text-xl mb-3">⛪ <span class="font-semibold text-white text-base">Baroque Church</span></p>
+                    <p class="text-white/55 text-sm leading-relaxed">The historic Anini-y Church, a centuries-old Spanish colonial structure with beautiful stone architecture.</p>
+                    <div class="mt-5 flex items-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center gap-5 mt-5">
+
+                <div class="nearby-card p-7 rounded-lg md:w-1/3 cursor-pointer group" data-card="aliw">
+                    <p class="text-xl mb-3">🏔️ <span class="font-semibold text-white text-base">Mt. Aliw-Liw</span></p>
+                    <p class="text-white/55 text-sm leading-relaxed">A popular hiking trail with rewarding views of the Antique coastline from the summit.</p>
+                    <div class="mt-5 flex items-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+
+                <div class="nearby-card p-7 rounded-lg md:w-1/3 cursor-pointer group" data-card="tampada">
+                    <p class="text-xl mb-3">🏖️ <span class="font-semibold text-white text-base">Le Grande Bayo</span></p>
+                    <p class="text-white/55 text-sm leading-relaxed">Escape the ordinary at Le Grande Bayo. A taste of paradise with a perfect view to match.</p>
+                    <div class="mt-5 flex items-center gap-2 text-[#e8b86d] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .nearby-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+        }
+        .nearby-card:hover {
+            border-color: rgba(184,145,70,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(232,184,109,0.1);
+        }
+        #nearbyModal.open { opacity:1; visibility:visible; }
+        #nearbyModal.open #nearbyBox { transform: translateY(0); }
+        #nearbyThumbs::-webkit-scrollbar { height:4px; }
+        #nearbyThumbs::-webkit-scrollbar-track { background:transparent; }
+        #nearbyThumbs::-webkit-scrollbar-thumb { background:rgba(232,184,109,0.5); border-radius:2px; }
+        .thumb-btn { flex-shrink:0; width:52px; height:40px; border-radius:3px; overflow:hidden; border:2px solid transparent; cursor:pointer; transition:border-color .2s; opacity:.65; }
+        .thumb-btn.active, .thumb-btn:hover { border-color:#e8b86d; opacity:1; }
+        .highlight-item { display:flex; align-items:flex-start; gap:10px; }
+        .highlight-dot { width:6px; height:6px; border-radius:50%; background:#e8b86d; margin-top:5px; flex-shrink:0; }
+        .highlight-item span { color:rgba(255,255,255,0.7); font-size:.8rem; line-height:1.5; }
+    </style>
+
+    <!-- NEARBY MODAL -->
+    <div id="nearbyModal" class="fixed inset-0 z-[200] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-400">
+        <div id="nearbyBackdrop" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div id="nearbyBox" class="relative z-10 w-full max-w-5xl bg-[#0a1e23] border border-white/10 rounded-lg overflow-hidden shadow-2xl flex flex-col md:flex-row translate-y-8 transition-transform duration-400" style="max-height:90vh">
+
+            <!-- Image Panel -->
+            <div class="md:w-[55%] relative overflow-hidden flex-shrink-0" style="min-height:260px">
+                <img id="nearbyImg" src="" alt="" class="w-full h-full object-cover absolute inset-0">
+                <div id="nearbyThumbs" class="absolute bottom-0 left-0 right-0 flex gap-2 p-3 bg-gradient-to-t from-black/70 to-transparent overflow-x-auto"></div>
+            </div>
+
+            <!-- Content Panel -->
+            <div class="md:w-[45%] flex flex-col overflow-y-auto">
+                <button id="nearbyClose" class="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center border border-white/20 rounded-full text-white/60 hover:text-white hover:border-white/50 transition-all bg-black/40 backdrop-blur-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="p-8 md:p-10 flex flex-col gap-6 h-full">
+                    <div>
+                        <p id="nearbyTag" class="text-[10px] uppercase tracking-[0.4em] text-[#e8b86d] mb-2"></p>
+                        <h2 id="nearbyTitle" class="font-serif text-3xl italic text-white leading-snug"></h2>
+                    </div>
+                    <p id="nearbyDesc" class="text-white/65 text-sm leading-relaxed"></p>
+                    <ul id="nearbyHighlights" class="space-y-3 mt-auto"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div>
+                <p class="site-footer__logo">Sira-an <span>Hot Spring</span></p>
+                <p class="site-footer__desc">A natural geothermal coastal retreat in Anini-y, Antique. Relax in warm mineral waters while listening to the rhythm of the Sea.</p>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Navigate</h4>
+                <ul class="site-footer__links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="stay.html">Stay</a></li>
+                    <li><a href="visit.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Nearby</h4>
+                <ul class="site-footer__links">
+                    <li>Nogas Island</li>
+                    <li>Punta Nasog</li>
+                    <li>Mt. Aliw-Liw</li>
+                    <li>Baroque Church</li>
+                    <li>Le Grande Bayo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <p>© 2026 Sira-an Hot Spring, Anini-y, Antique. All rights reserved.</p>
+            <p>Designed by Mary Artheal S. Seduco — BSIT 3B</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Hamburger ---
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', !isOpen);
+            hamburgerBtn.classList.toggle('open', !isOpen);
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('open');
+            });
+        });
+
+        // --- Nearby Modal Data ---
+        const nearbyData = {
+            nogas: {
+                tag: 'Uninhabited Island',
+                title: 'Nogas Island',
+                desc: 'A pristine uninhabited island with crystal-clear waters just off the coast of Anini-y. Ideal for snorkeling, island-hopping, and day trips by boat — one of Antique\'s hidden natural gems.',
+                highlights: [
+                    'Crystal-clear turquoise waters perfect for snorkeling',
+                    'Uninhabited island with untouched natural scenery',
+                    'Accessible by boat from the Anini-y shoreline',
+                    'Rich marine life and coral reef ecosystem'
+                ],
+                images: ['../images/nogasview.webp','../images/nogas.webp','../images/nogaas1.webp','../images/towerofnogas.webp','../images/nogaas.webp']
+            },
+            nasog: {
+                tag: 'Scenic Headland',
+                title: 'Punta Nasog',
+                desc: 'A dramatic rocky headland at the southern tip of Anini-y offering sweeping panoramic views of the coastline and the open Sulu Sea. A favorite spot for photography and watching the sunset.',
+                highlights: [
+                    'Panoramic views of the Antique coastline',
+                    'Rugged rocky formation unique to the area',
+                    'Popular photography and sightseeing destination',
+                    'Stunning vantage point over the open sea'
+                ],
+                images: ['../images/nasogview.webp','../images/nasog.webp','../images/nasogpoint.webp','../images/banderahan.webp','../images/viewanini-y.webp']
+            },
+            baroque: {
+                tag: 'Spanish Colonial Heritage',
+                title: 'Baroque Church',
+                desc: 'The San Juan de Nepomuceno Parish Church in Anini-y — a centuries-old Spanish colonial structure built with beautiful cut coral stone. It stands as one of the most well-preserved baroque churches in Antique.',
+                highlights: [
+                    'Centuries-old Spanish colonial coral stone architecture',
+                    'Declared a national cultural treasure',
+                    'Intricate baroque facade and bell tower',
+                    'Active parish at the heart of Anini-y town'
+                ],
+                images: ['../images/baroque.webp','../images/church.webp','../images/nepomuceno.webp','../images/insidechurch.webp','../images/sanjuandeNepomuceno.webp']
+            },
+            aliw: {
+                tag: 'Nature & Adventure',
+                title: 'Mt. Aliw-Liw',
+                desc: 'A rewarding hiking destination rising above the town of Anini-y. The trail leads to a summit with breathtaking views of the Antique coastline, the surrounding mountains, and on clear days — the neighboring islands.',
+                highlights: [
+                    'Panoramic summit views of the Antique coastline',
+                    'Moderate hiking trail suitable for beginners',
+                    'Cool mountain air and lush natural surroundings',
+                    'Best visited at sunrise for golden-hour views'
+                ],
+                images: ['../images/mt.aliwliw.webp','../images/viewaliwliw.webp','../images/abandonedsite_mt.aliw.webp','../images/viewintagaytay.webp','../images/tagaytay.webp']
+            },
+            tampada: {
+                tag: 'Hillside serenity with a breathtaking coastal view',
+                title: 'Le Grande Bayo',
+                desc: 'Le Grande Bayo — where the sky meets serenity. Where every horizon tells a story and every moment feels like home.',
+                highlights: [
+                    'Sun, sea, and slow moments at Le Grande Bayo',
+                    'Views that calm, moments that stay',
+                    'Short distance from Sira-an Hot Spring',
+                    'Waking up to this view hits different'
+                ],
+                images: ['../images/bayo-grande.webp','../images/viewgrande.webp','../images/legrandebayo.webp','../images/leigrande.webp','../images/leigrandebayo.webp']
+            }
+        };
+
+        // --- Modal Elements ---
+        const modal       = document.getElementById('nearbyModal');
+        const nearbyBox   = document.getElementById('nearbyBox');
+        const nearbyImg   = document.getElementById('nearbyImg');
+        const nearbyThumbs= document.getElementById('nearbyThumbs');
+        const nearbyTag   = document.getElementById('nearbyTag');
+        const nearbyTitle = document.getElementById('nearbyTitle');
+        const nearbyDesc  = document.getElementById('nearbyDesc');
+        const nearbyHL    = document.getElementById('nearbyHighlights');
+        const nearbyClose = document.getElementById('nearbyClose');
+        const backdrop    = document.getElementById('nearbyBackdrop');
+
+        function openNearbyModal(key) {
+            const d = nearbyData[key];
+            if (!d) return;
+
+            nearbyTag.textContent   = d.tag;
+            nearbyTitle.textContent = d.title;
+            nearbyDesc.textContent  = d.desc;
+
+            nearbyHL.innerHTML = d.highlights.map(h =>
+                `<li class="highlight-item"><span class="highlight-dot"></span><span>${h}</span></li>`
+            ).join('');
+
+            nearbyImg.src = d.images[0];
+            nearbyImg.alt = d.title;
+
+            nearbyThumbs.innerHTML = d.images.map((src, i) =>
+                `<button class="thumb-btn ${i===0?'active':''}" data-src="${src}">
+                    <img src="${src}" alt="" class="w-full h-full object-cover">
+                </button>`
+            ).join('');
+
+            nearbyThumbs.querySelectorAll('.thumb-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    nearbyImg.style.opacity = '0';
+                    nearbyImg.style.transform = 'scale(1.03)';
+                    setTimeout(() => {
+                        nearbyImg.src = btn.dataset.src;
+                        nearbyImg.style.opacity = '1';
+                        nearbyImg.style.transform = 'scale(1)';
+                    }, 180);
+                    nearbyThumbs.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            nearbyImg.style.transition = 'opacity .18s ease, transform .18s ease';
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNearbyModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.nearby-card').forEach(card => {
+            card.addEventListener('click', () => openNearbyModal(card.dataset.card));
+        });
+
+        nearbyClose.addEventListener('click', closeNearbyModal);
+        backdrop.addEventListener('click', closeNearbyModal);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNearbyModal(); });
+    </script>
+</body>
+
+</html>

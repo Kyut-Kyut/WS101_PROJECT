@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Sira-an Hot Spring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+        .nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px}
+        .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+        .nav-logo img{height:48px;width:auto;display:block}
+        .nav-links{display:flex;gap:0;list-style:none;height:100%}
+        .nav-links li{height:64px;display:flex;align-items:center}
+        .nav-links a{font-family:'DM Sans',sans-serif;font-size:.8rem;color:rgba(250,248,243,.55);text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-weight:500;padding:0 1.2rem;height:100%;display:flex;align-items:center;position:relative;transition:color .3s ease}
+        .nav-links a::after{content:'';position:absolute;bottom:0;left:1.2rem;right:1.2rem;height:2px;background:#e8b86d;transform:scaleX(0);transition:transform .35s ease}
+        .nav-links a:hover{color:#faf8f3}
+        .nav-links a:hover::after{transform:scaleX(1)}
+        .nav-links a.active{color:#e8b86d}
+        .nav-links a.active::after{transform:scaleX(1)}
+        .nav-cta{font-family:'DM Sans',sans-serif;font-size:.75rem;padding:.55rem 1.5rem;border:1px solid #c7923e;color:#e8b86d;background:transparent;text-transform:uppercase;letter-spacing:.14em;text-decoration:none;flex-shrink:0;transition:all .3s ease}
+        .nav-cta:hover{background:#c7923e;color:#0d1b2a}
+        .nav-cta.active{background:#c7923e;color:#0d1b2a}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .hamburger span{display:block;width:22px;height:2px;background:#faf8f3;transition:all .3s ease}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.open span:nth-child(2){opacity:0}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-overlay{position:fixed;inset:0;z-index:150;background:rgba(13,27,42,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;visibility:hidden;transition:all .4s ease}
+        .mobile-overlay.active{opacity:1;visibility:visible}
+        .mobile-overlay a{font-family:'Playfair Display',serif;font-size:1.6rem;color:#faf8f3;text-decoration:none;opacity:0;transform:translateY(20px);transition:all .4s ease}
+        .mobile-overlay.active a{opacity:1;transform:translateY(0)}
+        .mobile-overlay a:nth-child(1){transition-delay:.05s}
+        .mobile-overlay a:nth-child(2){transition-delay:.1s}
+        .mobile-overlay a:nth-child(3){transition-delay:.15s}
+        .mobile-overlay a:nth-child(4){transition-delay:.2s}
+        .mobile-overlay a:nth-child(5){transition-delay:.25s}
+        .mobile-overlay a:nth-child(6){transition-delay:.3s}
+        .mobile-overlay a:nth-child(7){transition-delay:.35s}
+        .mobile-overlay a.active{color:#e8b86d}
+        @media(max-width:768px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-inner{padding:0 1.2rem}}
+        .site-footer{background:#07111a;border-top:1px solid rgba(255,255,255,0.07);padding-top:60px}
+        .site-footer__inner{max-width:1200px;margin:0 auto;padding:0 2.5rem 52px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:52px}
+        .site-footer__logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:14px;color:#fff}
+        .site-footer__logo span{color:#e8b86d}
+        .site-footer__desc{color:rgba(255,255,255,0.5);font-size:.84rem;line-height:1.8}
+        .site-footer__heading{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#e8b86d;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-weight:600}
+        .site-footer__links{list-style:none;display:flex;flex-direction:column;gap:11px}
+        .site-footer__links li,.site-footer__links a{color:rgba(255,255,255,0.5);font-size:.85rem;text-decoration:none;transition:color .2s}
+        .site-footer__links a:hover{color:#fff}
+        .site-footer__bottom{max-width:1200px;margin:0 auto;padding:20px 2.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.28)}
+        @media(max-width:768px){.site-footer__inner{grid-template-columns:1fr;gap:32px;padding:0 1.5rem 40px}.site-footer__bottom{flex-direction:column;gap:8px;text-align:center;padding:16px 1.5rem}}
+    </style>
+</head>
+
+<body class="bg-[#0a1e23] text-white selection:bg-teal-500/30">
+
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../images/Siraan_Logo.webp" alt="Sira-an Hot Spring"></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="stay.html">Stay</a></li>
+                <li><a href="visit.html">Visit</a></li>
+            </ul>
+            <a href="booknow.html" class="nav-cta">Book Now</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="stay.html">Stay</a>
+        <a href="visit.html">Visit</a>
+        <a href="booknow.html">Book Now</a>
+    </div>
+
+    <header class="relative h-[60vh] flex items-center justify-center text-center px-4">
+        <div class="absolute inset-0 bg-black/55 z-0"></div>
+        <img src="../images/entrance.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
+            alt="Sira-an Background">
+
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <p class="uppercase tracking-[0.5em] text-[10px] mb-4 text-white/60">Our Story</p>
+            <h1 class="text-5xl md:text-6xl font-serif italic mb-6">About <span class="text-teal-400">Sira-an</span></h1>
+            <div class="h-[2px] w-16 bg-[#e8b86d] mx-auto mb-6 opacity-60"></div>
+            <!-- Typewriter line -->
+            <p class="text-lg md:text-xl font-light tracking-wide" style="color:rgba(255,255,255,0.85);min-height:2em;">
+                <span id="typewriter"></span><span id="cursor" style="display:inline-block;width:2px;height:1.1em;background:#5eead4;vertical-align:middle;margin-left:2px;border-radius:1px;animation:blink .7s step-end infinite;"></span>
+            </p>
+        </div>
+    </header>
+
+    <style>
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    </style>
+
+    <script>
+        (function(){
+            const phrases = [
+                "A natural hot spring paradise in Anini-y, Antique.",
+                "Where geothermal pools meet the Sea coastline.",
+                "Mineral-rich waters heated by the Earth's volcanic core.",
+                "Multiple pools ranging from 35°C to 40°C — open year-round.",
+                "Watch the sky turn gold from our west-facing pools at sunset.",
+                "A hidden gem just hours from Iloilo — perfect for all ages.",
+                "Family fun, healing, and relaxation — all in one coastal retreat.",
+                "Your gateway to Nogas Island, Punta Nasog, and Antique's wonders."
+            ];
+            const el = document.getElementById('typewriter');
+            let pi = 0, ci = 0, deleting = false, pauseTicks = 0;
+            const PAUSE = 38;
+
+            function tick() {
+                const phrase = phrases[pi];
+                if (!deleting) {
+                    el.textContent = phrase.slice(0, ci + 1);
+                    ci++;
+                    if (ci === phrase.length) { deleting = true; pauseTicks = PAUSE; setTimeout(tick, 80); return; }
+                    setTimeout(tick, 48);
+                } else {
+                    if (pauseTicks > 0) { pauseTicks--; setTimeout(tick, 40); return; }
+                    el.textContent = phrase.slice(0, ci - 1);
+                    ci--;
+                    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 300); return; }
+                    setTimeout(tick, 28);
+                }
+            }
+            setTimeout(tick, 800);
+        })();
+    </script>
+
+    <section class="py-24 bg-[#0a1e23]">
+        <div class="container mx-auto px-8 lg:px-20 grid md:grid-cols-2 gap-20 items-center">
+
+            <div class="relative" style="padding-bottom:160px; min-height:340px;">
+                <!-- Main image: entrance sign, top-left, ~68% width -->
+                <div class="rounded-lg overflow-hidden border border-white/10 shadow-2xl" style="width:68%;">
+                    <img src="../images/beautyview.webp" alt="Welcome to Sira-an"
+                        class="w-full object-cover hover:scale-105 transition duration-700" style="height:320px;">
+                </div>
+                <!-- Overlay image: mural, bottom-right, overlapping -->
+                <div class="absolute rounded-lg overflow-hidden border border-white/15 shadow-2xl z-20"
+                     style="bottom:0; right:0; width:62%;">
+                    <img src="../images/pool3.webp" alt="Sira-an Mural"
+                        class="w-full object-cover" style="height:220px;">
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <h2 class="text-4xl font-serif italic text-white">
+                    A Hidden Gem of <span class="text-[#b89146]">Antique</span>
+                </h2>
+                <div class="text-white/70 space-y-6 leading-relaxed font-light text-base">
+                    <p>
+                        Sira-an Hot Spring is a natural geothermal wonder located in the coastal barangay of Sira-an,
+                        Anini-y, Antique.
+                        Heated by the earth's volcanic activity, its mineral-rich waters flow into seaside pools where
+                        you can soak while gazing at the vast Sea.
+                    </p>
+                    <p>
+                        The resort features multiple pools at different temperatures, from warm therapeutic baths to a
+                        large oceanfront swimming pool with a water slide.
+                        Whether you come for healing, relaxation, or family fun, Sira-an delivers an experience unlike
+                        any other in the Visayas.
+                    </p>
+                    <p>
+                        Beyond the hot springs, visitors can explore nearby attractions including Nogas Island, Punta
+                        Nasog, the historic Baroque Church, and the scenic Mt. Aliw-Liw.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-[#0d262b] border-y border-white/5">
+        <div class="container mx-auto px-8 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            <div class="space-y-2">
+                <div class="text-4xl font-serif text-teal-400">5+</div>
+                <div class="text-[9px] uppercase tracking-[0.3em] text-white/40">Natural Pools</div>
+            </div>
+            <div class="space-y-2">
+                <div class="text-4xl font-serif text-teal-400">40°C</div>
+                <div class="text-[9px] uppercase tracking-[0.3em] text-white/40">Spring Temp</div>
+            </div>
+            <div class="space-y-2">
+                <div class="text-4xl font-serif text-teal-400">6</div>
+                <div class="text-[9px] uppercase tracking-[0.3em] text-white/40">Nearby Attractions</div>
+            </div>
+            <div class="space-y-2">
+                <div class="text-4xl font-serif text-teal-400">365</div>
+                <div class="text-[9px] uppercase tracking-[0.3em] text-white/40">Days Open</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div>
+                <p class="site-footer__logo">Sira-an <span>Hot Spring</span></p>
+                <p class="site-footer__desc">A natural geothermal coastal retreat in Anini-y, Antique. Relax in warm mineral waters while listening to the rhythm of the Sea.</p>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Navigate</h4>
+                <ul class="site-footer__links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="stay.html">Stay</a></li>
+                    <li><a href="visit.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="site-footer__heading">Nearby</h4>
+                <ul class="site-footer__links">
+                    <li>Nogas Island</li>
+                    <li>Punta Nasog</li>
+                    <li>Mt. Aliw-Liw</li>
+                    <li>Baroque Church</li>
+                    <li>Le Grande BAyo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <p>© 2026 Sira-an Hot Spring, Anini-y, Antique. All rights reserved.</p>
+            <p>Designed by Mary Artheal S. Seduco — BSIT 3B</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', !isOpen);
+            hamburgerBtn.classList.toggle('open', !isOpen);
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
